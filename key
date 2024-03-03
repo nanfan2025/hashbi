@@ -1,0 +1,27 @@
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.NoSuchAlgorithmException;
+import java.security.interfaces.ECPrivateKey;
+import java.security.interfaces.ECPublicKey;
+
+public class WalletCreator {
+    public static void main(String[] args) {
+        try {
+            // 创建椭圆曲线加密的密钥对生成器
+            KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("EC");
+
+            // 生成密钥对
+            KeyPair keyPair = keyPairGenerator.generateKeyPair();
+
+            // 获取公钥和私钥
+            ECPublicKey publicKey = (ECPublicKey) keyPair.getPublic();
+            ECPrivateKey privateKey = (ECPrivateKey) keyPair.getPrivate();
+
+            // 打印公钥和私钥
+            System.out.println("公钥: " + publicKey);
+            System.out.println("私钥: " + privateKey);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+    }
+}
